@@ -1,0 +1,88 @@
+# Copyright (c) 2023 Jacob Allen Morris
+# 
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+[tasks.default]
+windows_alias = "windows_build"
+linux_alias = "linux_build"
+
+# Build Tasks for Linux
+[tasks.linux_build]
+run_task = [
+	{ name = "release-i686-unknown-linux-gnu", condition = { env = { "CARGO_MAKE_PROFILE" = "release", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-unknown-linux-gnu" } } },
+	{ name = "debug-i686-unknown-linux-gnu", condition = { env = { "CARGO_MAKE_PROFILE" = "debug", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-unknown-linux-gnu" } } },
+	{ name = "release-x86_64-unknown-linux-gnu", condition = { env = { "CARGO_MAKE_PROFILE" = "release", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-unknown-linux-gnu" } } },
+	{ name = "debug-x86_64-unknown-linux-gnu", condition = { env = { "CARGO_MAKE_PROFILE" = "debug", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-unknown-linux-gnu" } } },
+	{ name = "debug-i686-unknown-linux-gnu", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-unknown-linux-gnu" } } },
+	{ name = "debug-x86_64-unknown-linux-gnu", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-unknown-linux-gnu" } } },
+	{ name = "debug-x86_64-unknown-linux-gnu" }
+]
+
+[tasks.debug-i686-unknown-linux-gnu]
+script = "bash -c scripts/debug-i686-unknown-linux-gnu.sh"
+dependencies = [ "debug-build-i686-unknown-linux-gnu" ]
+[tasks.debug-build-i686-unknown-linux-gnu]
+command = "cargo"
+args = [ "build", "--target", "i686-unknown-linux-gnu" ]
+
+[tasks.release-i686-unknown-linux-gnu]
+script = "bash -c scripts/build-i686-unknown-linux-gnu.sh"
+dependencies = [ "release-build-i686-unknown-linux-gnu" ]
+[tasks.release-build-i686-unknown-linux-gnu]
+command = "cargo"
+args = [ "build", "--release", "--target", "i686-unknown-linux-gnu" ]
+
+[tasks.debug-x86_64-unknown-linux-gnu]
+script = "bash -c scripts/debug-x86_64-unknown-linux-gnu.sh"
+dependencies = [ "debug-build-x86_64-unknown-linux-gnu" ]
+[tasks.debug-build-x86_64-unknown-linux-gnu]
+command = "cargo"
+args = [ "build", "--target", "x86_64-unknown-linux-gnu" ]
+
+[tasks.release-x86_64-unknown-linux-gnu]
+script = "bash -c scripts/build-x86_64-unknown-linux-gnu.sh"
+dependencies = [ "release-build-x86_64-unknown-linux-gnu" ]
+[tasks.release-build-x86_64-unknown-linux-gnu]
+command = "cargo"
+args = [ "build", "--release", "--target", "x86_64-unknown-linux-gnu" ]
+
+# Build Tasks for Windows
+[tasks.windows_build]
+run_task = [
+	{ name = "release-i686-pc-windows-msvc", condition = { env = { "CARGO_MAKE_PROFILE" = "release", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-pc-windows-msvc" } } },
+	{ name = "debug-i686-pc-windows-msvc", condition = { env = { "CARGO_MAKE_PROFILE" = "debug", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-pc-windows-msvc" } } },
+	{ name = "release-x86_64-pc-windows-msvc", condition = { env = { "CARGO_MAKE_PROFILE" = "release", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-pc-windows-msvc" } } },
+	{ name = "debug-x86_64-pc-windows-msvc", condition = { env = { "CARGO_MAKE_PROFILE" = "debug", "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-pc-windows-msvc" } } },
+	{ name = "debug-i686-pc-windows-msvc", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-pc-windows-msvc" } } },
+	{ name = "debug-x86_64-pc-windows-msvc", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-pc-windows-msvc" } } },
+	{ name = "debug-x86_64-pc-windows-msvc" }
+]
+
+[tasks.debug-i686-pc-windows-msvc]
+script = "powershell -ExecutionPolicy Bypass -File scripts/debug-i686-pc-windows-msvc.ps1"
+dependencies = [ "debug-build-i686-pc-windows-msvc" ]
+[tasks.debug-build-i686-pc-windows-msvc]
+command = "cargo"
+args = [ "build", "--target", "i686-pc-windows-msvc" ]
+
+[tasks.release-i686-pc-windows-msvc]
+script = "powershell -ExecutionPolicy Bypass -File scripts/build-i686-pc-windows-msvc.ps1"
+dependencies = [ "release-build-i686-pc-windows-msvc" ]
+[tasks.release-build-i686-pc-windows-msvc]
+command = "cargo"
+args = [ "build", "--release", "--target", "i686-pc-windows-msvc" ]
+
+[tasks.debug-x86_64-pc-windows-msvc]
+script = "powershell -ExecutionPolicy Bypass -File scripts/debug-x86_64-pc-windows-msvc.ps1"
+dependencies = [ "debug-build-x86_64-pc-windows-msvc" ]
+[tasks.debug-build-x86_64-pc-windows-msvc]
+command = "cargo"
+args = [ "build", "--target", "x86_64-pc-windows-msvc" ]
+
+[tasks.release-x86_64-pc-windows-msvc]
+script = "powershell -ExecutionPolicy Bypass -File scripts/build-x86_64-pc-windows-msvc.ps1"
+dependencies = [ "release-build-x86_64-pc-windows-msvc" ]
+[tasks.release-build-x86_64-pc-windows-msvc]
+command = "cargo"
+args = [ "build", "--release", "--target", "x86_64-pc-windows-msvc" ]

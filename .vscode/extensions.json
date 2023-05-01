@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"tamasfe.even-better-toml",
+		"serayuzgur.crates",
+		"rust-lang.rust-analyzer",
+		"ymotongpoo.licenser",
+		"dustypomerleau.rust-syntax",
+		"me-dutour-mathieu.vscode-github-actions",
+		"ms-vscode.powershell",
+		"foxundermoon.shell-format"
+	]
+}

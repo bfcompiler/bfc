@@ -1,0 +1,33 @@
+name: Build 64bit Linux Binary
+on: [workflow_dispatch]
+jobs:
+  build_linux_binary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Install gcc
+        run: sudo apt-get install gcc binutils -y
+      - name: Cache 64bit linux cargo
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-64bit-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install rust target x86_64-unknown-linux-gnu
+        run: rustup target add x86_64-unknown-linux-gnu
+      - name: Install cargo make
+        run: if [[ ! -e ~/.cargo/bin/cargo-make ]]; then cargo install cargo-make; fi
+      - name: Set permissions for script
+        run: sudo chmod +x scripts/build-x86_64-unknown-linux-gnu.sh
+      - name: Build with cargo-make
+        run: cargo make -e CARGO_MAKE_RUST_TARGET_TRIPLE=x86_64-unknown-linux-gnu --profile=release
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: bfc-x86_64-unknown-linux-gnu
+          path: output/bfc-x86_64-unknown-linux-gnu

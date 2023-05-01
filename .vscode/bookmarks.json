@@ -1,0 +1,59 @@
+{
+	"files": [
+		{
+			"path": "Makefile.toml",
+			"bookmarks": [
+				{
+					"line": 10,
+					"column": 0,
+					"label": "Linux Builder"
+				},
+				{
+					"line": 21,
+					"column": 36,
+					"label": "Debug ; i686 ; Linux"
+				},
+				{
+					"line": 28,
+					"column": 36,
+					"label": "Release ; i686 ; Linux"
+				},
+				{
+					"line": 35,
+					"column": 21,
+					"label": "Debug ; x86_64 ; Linux"
+				},
+				{
+					"line": 42,
+					"column": 8,
+					"label": "Release ; x86_64 ; Linux"
+				},
+				{
+					"line": 49,
+					"column": 0,
+					"label": "Windows Builder"
+				},
+				{
+					"line": 61,
+					"column": 10,
+					"label": "Debug ; i686 ; Windows"
+				},
+				{
+					"line": 68,
+					"column": 9,
+					"label": "Release ; i686 ; Windows"
+				},
+				{
+					"line": 75,
+					"column": 5,
+					"label": "Debug ; x86_64 ; Windows"
+				},
+				{
+					"line": 82,
+					"column": 13,
+					"label": "Release ; x86_64 ; Windows"
+				}
+			]
+		}
+	]
+}
