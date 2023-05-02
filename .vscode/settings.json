@@ -1,4 +1,11 @@
 {
 	"bookmarks.saveBookmarksInProject": true,
-	"bookmarks.sideBar.expanded": false
+	"bookmarks.sideBar.expanded": false,
+	"rust-analyzer.linkedProjects": [
+		".\\Cargo.toml"
+	],
+	"files.associations": {
+		"conio.h": "c",
+		"filesystem": "c"
+	}
 }
