@@ -42,7 +42,7 @@ pub fn compile_file(input_file: &str, output_file: &str) -> Result<String, Strin
 		.creation_flags(0x08000000)
 		.stderr(Stdio::piped())
 		.stdout(Stdio::piped())
-		.args(&["-c", format!("{} -c `\"PATH=`$PATH:/usr/bin ; gcc {} -o {}`\"", bash_path.to_str().unwrap(), input_file.display(), output_file.display()).as_str()])
+		.args(&["-c", format!("{} -c `\"PATH=`$PATH:/usr/bin:/mingw64/bin ; gcc {} -o {}`\"", bash_path.to_str().unwrap(), input_file.display(), output_file.display()).as_str()])
 		.spawn()
 		.unwrap();
 	
