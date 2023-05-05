@@ -24,28 +24,32 @@ script = "bash -c scripts/debug-i686-unknown-linux-gnu.sh"
 dependencies = [ "debug-build-i686-unknown-linux-gnu" ]
 [tasks.debug-build-i686-unknown-linux-gnu]
 command = "cargo"
-args = [ "build", "--target", "i686-unknown-linux-gnu" ]
+args = [ "build", "--target", "i686-unknown-linux-gnu", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
 
 [tasks.release-i686-unknown-linux-gnu]
 script = "bash -c scripts/build-i686-unknown-linux-gnu.sh"
 dependencies = [ "release-build-i686-unknown-linux-gnu" ]
 [tasks.release-build-i686-unknown-linux-gnu]
 command = "cargo"
-args = [ "build", "--release", "--target", "i686-unknown-linux-gnu" ]
+args = [ "build", "--release", "--target", "i686-unknown-linux-gnu", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
 
 [tasks.debug-x86_64-unknown-linux-gnu]
 script = "bash -c scripts/debug-x86_64-unknown-linux-gnu.sh"
 dependencies = [ "debug-build-x86_64-unknown-linux-gnu" ]
 [tasks.debug-build-x86_64-unknown-linux-gnu]
 command = "cargo"
-args = [ "build", "--target", "x86_64-unknown-linux-gnu" ]
+args = [ "build", "--target", "x86_64-unknown-linux-gnu", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
 
 [tasks.release-x86_64-unknown-linux-gnu]
 script = "bash -c scripts/build-x86_64-unknown-linux-gnu.sh"
 dependencies = [ "release-build-x86_64-unknown-linux-gnu" ]
 [tasks.release-build-x86_64-unknown-linux-gnu]
 command = "cargo"
-args = [ "build", "--release", "--target", "x86_64-unknown-linux-gnu" ]
+args = [ "build", "--release", "--target", "x86_64-unknown-linux-gnu", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
 
 # Build Tasks for Windows
 [tasks.windows_build]
@@ -64,25 +68,32 @@ script = "powershell -ExecutionPolicy Bypass -File scripts/debug-i686-pc-windows
 dependencies = [ "debug-build-i686-pc-windows-msvc" ]
 [tasks.debug-build-i686-pc-windows-msvc]
 command = "cargo"
-args = [ "build", "--target", "i686-pc-windows-msvc" ]
+args = [ "build", "--target", "i686-pc-windows-msvc", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
 
 [tasks.release-i686-pc-windows-msvc]
 script = "powershell -ExecutionPolicy Bypass -File scripts/build-i686-pc-windows-msvc.ps1"
 dependencies = [ "release-build-i686-pc-windows-msvc" ]
 [tasks.release-build-i686-pc-windows-msvc]
 command = "cargo"
-args = [ "build", "--release", "--target", "i686-pc-windows-msvc" ]
+args = [ "build", "--release", "--target", "i686-pc-windows-msvc", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
 
 [tasks.debug-x86_64-pc-windows-msvc]
 script = "powershell -ExecutionPolicy Bypass -File scripts/debug-x86_64-pc-windows-msvc.ps1"
 dependencies = [ "debug-build-x86_64-pc-windows-msvc" ]
 [tasks.debug-build-x86_64-pc-windows-msvc]
 command = "cargo"
-args = [ "build", "--target", "x86_64-pc-windows-msvc" ]
+args = [ "build", "--target", "x86_64-pc-windows-msvc", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
 
 [tasks.release-x86_64-pc-windows-msvc]
 script = "powershell -ExecutionPolicy Bypass -File scripts/build-x86_64-pc-windows-msvc.ps1"
 dependencies = [ "release-build-x86_64-pc-windows-msvc" ]
 [tasks.release-build-x86_64-pc-windows-msvc]
 command = "cargo"
-args = [ "build", "--release", "--target", "x86_64-pc-windows-msvc" ]
+args = [ "build", "--release", "--target", "x86_64-pc-windows-msvc", "-Z", "build-std=std,panic_abort", "-Z", "build-std-features=panic_immediate_abort" ]
+dependencies = [ "install-rust-src" ]
+
+[tasks.install-rust-src]
+install_crate = { rustup_component_name = "rust-src" }

@@ -14,42 +14,42 @@
 					"label": "Debug ; i686 ; Linux"
 				},
 				{
-					"line": 28,
+					"line": 29,
 					"column": 36,
 					"label": "Release ; i686 ; Linux"
 				},
 				{
-					"line": 35,
+					"line": 37,
 					"column": 21,
 					"label": "Debug ; x86_64 ; Linux"
 				},
 				{
-					"line": 42,
+					"line": 45,
 					"column": 8,
 					"label": "Release ; x86_64 ; Linux"
 				},
 				{
-					"line": 49,
+					"line": 53,
 					"column": 0,
 					"label": "Windows Builder"
 				},
 				{
-					"line": 61,
+					"line": 65,
 					"column": 10,
 					"label": "Debug ; i686 ; Windows"
 				},
 				{
-					"line": 68,
+					"line": 73,
 					"column": 9,
 					"label": "Release ; i686 ; Windows"
 				},
 				{
-					"line": 75,
+					"line": 81,
 					"column": 5,
 					"label": "Debug ; x86_64 ; Windows"
 				},
 				{
-					"line": 82,
+					"line": 89,
 					"column": 13,
 					"label": "Release ; x86_64 ; Windows"
 				}

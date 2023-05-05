@@ -1,16 +1,22 @@
 [package]
 name = "bfc"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+panic = "abort"
+strip = true
+opt-level = "s"
+lto = true
+codegen-units = 1
 
 [dependencies]
 built = "0.6.0"
 normpath = "1.1.1"
 owo-colors = { version = "3.5.0", features = ["supports-colors"] }
 rand = "0.8.5"
-
 
 [build-dependencies]
 built = "0.6.0"

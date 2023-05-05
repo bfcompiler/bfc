@@ -1,16 +1,17 @@
 // Copyright (c) 2023 Jacob Allen Morris
-// 
+//
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+mod built;
 mod compiler;
 mod console;
-mod built;
 mod interpreter;
 mod reader;
 mod writer;
 
-use std::{env, process::exit, path::PathBuf, fs};
+use owo_colors::OwoColorize;
+use std::{env, fs, path::PathBuf, process::exit};
 
 fn main() {
     let args = env::args().collect::<Vec<String>>();
@@ -59,10 +60,13 @@ fn main() {
             if output.clone().is_err() {
                 if output.clone().err().unwrap() == "File couldn't be found" {
                     console::print_error_message("File couldn't be found");
+                    exit(0);
                 } else if output.clone().err().unwrap() == "Output folder doesn't exist" {
                     console::print_error_message("Output folder doesn't exist");
+                    exit(0);
                 }
             }
+            println!("{}", "Complete!".fg_rgb::<0, 200, 0>());
             exit(0);
         } else if non_flag_args.len() == 1 {
             let input_src = reader::read_src(PathBuf::from(non_flag_args[0].as_str()));
@@ -86,8 +90,8 @@ fn main() {
                     console::print_error_message("Output folder doesn't exist");
                 }
             }
-            // println!("{}", written_file);
             fs::remove_file(PathBuf::from(written_file)).unwrap();
+            println!("{}", "Complete!".fg_rgb::<0, 200, 0>());
             exit(0);
         } else {
             console::print_error_message("Invalid amount of arguments");
