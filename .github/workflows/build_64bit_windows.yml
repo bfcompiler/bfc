@@ -18,6 +18,8 @@ jobs:
           key: ${{ runner.os }}-cargo-64bit-${{ hashFiles('**/Cargo.lock') }}
       - name: Install rust target x86_64-pc-windows-msvc
         run: rustup target add x86_64-pc-windows-msvc
+      - name: Install rust toolchain nightly
+        run: rustup toolchain install nightly && rustup default nightly
       - name: Install cargo make
         run: if (!(Test-Path -Path "~/.cargo/bin/cargo-make.exe")) { cargo install cargo-make }
       - name: Build with cargo-make

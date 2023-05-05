@@ -20,6 +20,8 @@ jobs:
           key: ${{ runner.os }}-cargo-64bit-${{ hashFiles('**/Cargo.lock') }}
       - name: Install rust target x86_64-unknown-linux-gnu
         run: rustup target add x86_64-unknown-linux-gnu
+      - name: Install rust toolchain nightly
+        run: rustup toolchain install nightly && rustup default nightly 
       - name: Install cargo make
         run: if [[ ! -e ~/.cargo/bin/cargo-make ]]; then cargo install cargo-make; fi
       - name: Set permissions for script
