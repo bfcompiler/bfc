@@ -19,7 +19,7 @@ jobs:
       - name: Install rust target x86_64-pc-windows-msvc
         run: rustup target add x86_64-pc-windows-msvc
       - name: Install rust toolchain nightly
-        run: rustup toolchain install nightly && rustup default nightly
+        run: rustup toolchain install nightly-2023-05-03 && rustup default nightly-2023-05-03
       - name: Install cargo make
         run: if (!(Test-Path -Path "~/.cargo/bin/cargo-make.exe")) { cargo install cargo-make }
       - name: Build with cargo-make
