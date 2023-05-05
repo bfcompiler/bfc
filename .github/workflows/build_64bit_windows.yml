@@ -24,6 +24,12 @@ jobs:
         run: if (!(Test-Path -Path "~/.cargo/bin/cargo-make.exe")) { cargo install cargo-make }
       - name: Build with cargo-make
         run: cargo make -e CARGO_MAKE_RUST_TARGET_TRIPLE=x86_64-pc-windows-msvc --profile=release
+      - name: Compress artifact with UPX
+        uses: crazy-max/ghaction-upx@v2
+        with:
+          version: latest
+          files: output/bfc-x86_64-pc-windows-msvc.exe
+          args: -f9
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
